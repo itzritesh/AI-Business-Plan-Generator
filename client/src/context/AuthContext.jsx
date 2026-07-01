@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api.js';
 
 export const AuthContext = createContext();
 
@@ -16,10 +16,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        // Configure Axios default headers
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        
-        const res = await axios.get('/api/auth/profile');
+        const res = await api.get('/api/auth/profile');
         setUser(res.data);
       } catch (error) {
         console.error('Session validation failed, logging out:', error.message);
@@ -40,7 +37,6 @@ export const AuthProvider = ({ children }) => {
       name: userData.name,
       email: userData.email,
     });
-    axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
   };
 
   const register = (userData) => {
@@ -51,7 +47,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
-    delete axios.defaults.headers.common['Authorization'];
   };
 
   return (
