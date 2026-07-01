@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-slate-400 dark:hover:bg-slate-700;
+  }
+}
+
+@layer utilities {
+  /* Premium SaaS Glassmorphism styles */
+  .glass-card {
+    @apply bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/40;
+  }
+
+  .glass-input {
+    @apply bg-white/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 focus:border-brand dark:focus:border-brand-light focus:ring-1 focus:ring-brand outline-none transition-all duration-200;
+  }
+
+  /* Vibrant SaaS gradients */
+  .grad-primary {
+    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600;
+  }
+
+  .grad-primary-dark {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+  }
+
+  .grad-blue-teal {
+    @apply bg-gradient-to-r from-blue-600 to-teal-500;
+  }
+
+  .grad-orange-pink {
+    @apply bg-gradient-to-r from-orange-500 to-pink-500;
+  }
+
+  .grad-slate {
+    @apply bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950;
+  }
+
+  /* Interactive Hover Effects */
+  .hover-trigger:hover .hover-target {
+    @apply scale-105 transition-transform duration-300;
+  }
+}
+
+/* Micro-animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(15px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
